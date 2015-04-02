@@ -1,0 +1,17 @@
+{
+    "info" : {
+        "name"          :   "expresssend",
+        "description"   :   "website to send money and view transactions",
+        "version"       :   "0.1.0",
+        "author"        :   {
+            "name"    :   "Aravindh Balakrishnan"
+        }
+    },
+    "appPath"   :   "app",
+    "serverPath":   "server",
+    "distPath"  :   "dist",
+    "server" : {
+        "port"      :   4000
+    },
+	"installed" :	true
+}
