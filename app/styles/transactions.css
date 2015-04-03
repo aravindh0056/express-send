@@ -6,13 +6,13 @@
   border:1px solid  #666666;         
   border-spacing:5px;/*cellspacing:poor IE support for  this*/
 }
-.headRow{
+.divrow{
   display:table-row;
   width:auto;
   clear:both;
 
 }
-.divCell{
+.divcell{
   float:left;/*fix for  buggy browsers*/
   display:table-column;         
   width:200px;  
@@ -23,5 +23,9 @@
 .tblbody{
   height:400px;
   overflow:auto;
+}
+
+.divheader{
+  font-size: 30px;
 }
 </style>

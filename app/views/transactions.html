@@ -1,17 +1,25 @@
-<div class="jumbotron" style="width:750px;">
+<style> 
+div #divTable{
+    border: 2px solid #a1a1a1;
+    padding: 20px; 
+    background: #dddddd;
+    border-radius: 25px;
+}
+</style>
+<div class="jumbotron" style="width:780px;">
   <h3 style="padding-bottom:30px;">Transaction History</h3>
 <img src="images/loading_spinner.gif" ng-show="loading" />
 <div id="divTable" class="divTable" ng-show="!loading">
-    <div class="headRow">
-        <div class="divCell">Date</div>
-        <div class="divCell">Recepient</div>
-        <div class="divCell">Amount</div>
+    <div class="divrow">
+        <div class="divheader divcell">Date</div>
+        <div class="divheader divcell">Recepient</div>
+        <div class="divheader divcell">Amount</div>
     </div>
     <div id="tblbody" class="tblbody">
-      <div class="divRow" ng-repeat="transaction in transactions">
-          <div class="divCell">{{transaction.date}}</div>
-          <div class="divCell">{{transaction.name}}</div>
-          <div class="divCell">{{transaction.amount}}</div>
+      <div class="divrow" ng-repeat="transaction in transactions">
+          <div class="divcell">{{transaction.date}}</div>
+          <div class="divcell">{{transaction.name}}</div>
+          <div class="divcell">{{transaction.amount}}</div>
       </div>  
     </div>
 </div>
