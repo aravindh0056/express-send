@@ -1,19 +1,34 @@
 <div class="jumbotron">
   <!--<h1>Send Money</h1> -->
  
+ <div ng-include src="'./views/error.html'"></div>
+
   <form style="margin-left:auto;margin-right:auto;" class="form-horizontal">
 	  <div class="form-group">
-	    <div class="input-group">
-	      <div class="input-group-addon">$</div>
-	      <input type="text" ng-model="amount" class="form-control" id="amount" placeholder="Amount">
-	      
+	    <div style="margin-left:105px;" class="input-group">
+	      <button style="width:30px;height:40px;float:left;display:inline;">$</button>
+	      <input style="width:320px;height:40px;float:left;display:inline;border-right-style: none;" type="text" ng-model="amount" class="form-control" id="amount" placeholder="Amount">
+	      <select style="width:50px;height:40px;float:left;display:inline;border-left-style: none;" class="form-control" id="sel1">
+	        <option>$</option>
+	        <option>&#8364;</option>
+	        <option>&#8355;</option>
+	        <option>&#8377;</option>
+	      </select>
 	    </div>
 	  </div>
+
 	   <div class="form-group">
-	    <input type="email" ng-model="email" class="form-control" id="email" placeholder="jane.doe@example.com">
+	    <input style="margin:auto;" type="text" ng-model="email" class="form-control" id="email" placeholder="sample.email@example.com">
+	  </div>
+
+	  <div class="form-group">
+	  	<textarea style="margin:auto;" ng-model="message" class="form-control" rows="3"></textarea>
 	  </div>
 	  <div class="form-group">
-	  	<textarea ng-model="message" class="form-control" rows="3"></textarea>
+	  <select style="margin:auto;" class="form-control" id="sel1">
+	        <option>Test1</option>
+	        <option>Test2</option>
+	        </select>
 	  </div>
 	  <button type="submit" ng-click="clear()" class="btn btn-primary">Clear</button>
 	  <button type="submit" ng-click="validateAndSend()" class="btn btn-primary">Transfer cash</button>

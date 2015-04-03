@@ -8,7 +8,7 @@
  * Controller of the expressSendApp
  */
 angular.module('expressSendApp')
-  .controller('SendFundsCtrl', function ($scope, $location) {
+  .controller('SendFundsCtrl', function ($scope, $location, $http) {
   	var inputCtrls = [{
   						name 	 : 'amount',
   						type 	 : 'number',
@@ -27,6 +27,8 @@ angular.module('expressSendApp')
   					  	type : 'text'
   					  }];    
 
+    $scope.show = false;
+
     $scope.validateAndSend = function() {
     	var invalid = false;
     	var invalidInputs = [];
@@ -36,7 +38,7 @@ angular.module('expressSendApp')
     		var value = $scope[inputCtrl.name];
     		if(inputCtrl.required && (value == "" || value == undefined)) {
     			invalid = true;
-    			invalidInputs.push(inputCtrl.text)
+    			invalidInputs.push(inputCtrl.text + " is required");
     			continue;
     		}
 
@@ -46,12 +48,13 @@ angular.module('expressSendApp')
     				value = Number(value);
     				if(isNaN(value) || typeof value !== 'number') {
     					invalid = true; 
-    					invalidInputs.push(inputCtrl.text);
+    					invalidInputs.push(inputCtrl.text + " should be a number");
     				}
     				break;
     			case 'email':
     				var regex = /\S+@\S+\.\S+/;
     				invalid = !regex.test(value);
+            invalidInputs.push(inputCtrl.text + " is invalid");
     				break;
     			default:
     				break;	
@@ -60,11 +63,32 @@ angular.module('expressSendApp')
     	}
 
     	if(!invalid) {
-    		$location.path( '/transactions' );
+        var url = 'http://localhost:4000/transactions';
+        $http.post(url, {email : $scope.email})
+            .success(function(data) {
+                $location.path( '/success' );
+            })
+            .error(function(data) {
+              invalidInputs = [];
+              if(data.code == 1234) invalidInputs.push(data.message);
+              else invalidInputs.push("Transaction failed");
+              $scope.invalidInputs = invalidInputs;
+              var error = angular.element('#transactionErrorModal');
+              error.modal('show');
+              console.log(data.message);
+            });
     	}
     	else {
+        var error = angular.element('#transactionErrorModal');
+        error.modal('show');
+        $scope.invalidInputs = invalidInputs;
+        $scope.show = true;
     		console.log(invalidInputs);
     	}
+    }
+
+    $scope.getUserInfo = function() {
+      console.log(invalidInputs);
     }
 
     $scope.clear = function() {

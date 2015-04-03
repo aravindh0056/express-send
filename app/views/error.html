@@ -1,0 +1,20 @@
+<div class="modal fade" id="transactionErrorModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 class="modal-title">Error</h2>
+      </div>
+      <div class="modal-body">
+        <div ng-repeat="invalidInput in invalidInputs">
+          <h3><div>{{invalidInput}}</div></h3>
+      </div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
