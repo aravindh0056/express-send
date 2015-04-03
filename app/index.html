@@ -1,6 +1,7 @@
 <!doctype html>
-<html class="no-js">
+<html>
   <head>
+    <base href="/">
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
@@ -10,6 +11,10 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script
+        type="text/javascript"
+        src="//code.jquery.com/jquery-2.0.3.min.js">
+    </script>
 
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
@@ -18,9 +23,7 @@
   </head>
   <body ng-app="expressSendApp">  
     <div ng-include src="'header.html'"></div>
-    <div class="container">
-    <div ng-view=""></div>
-    </div>
+    <div class="container" ng-view></div>
 
     <div class="footer">
       <div class="container">
@@ -28,26 +31,19 @@
       </div>
     </div>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
-
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <!-- endbower -->
-    <!-- endbuild -->
+    <!-- endbuild 
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+       <!--   <script src="scripts/factory.js"></script>
+        -->
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/sendfunds.js"></script>
+        <script src="scripts/controllers/transactions.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -8,6 +8,6 @@
  * Controller of the expressSendApp
  */
 angular.module('expressSendApp')
-  .controller('expressSendApp', function ($scope) {
+  .controller('AboutCtrl', function ($scope) {
     
   });

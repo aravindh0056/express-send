@@ -1,0 +1,16 @@
+<table class="table" id="scoredetails">
+    <thead>
+      <tr>
+        <th><span>Date</span></th>
+        <th><span>Recepient</span></th>
+        <th><span>Amount</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="transaction in transactions">
+        <td>{{transaction.date}}</td>
+        <td>{{transaction.name}}</td>
+        <td>{{transaction.amount}}</td>
+      </tr>
+    </tbody>  
+  </table>

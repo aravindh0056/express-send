@@ -2,21 +2,22 @@
 
 // Dependencies
 var server = require( './../server' ).server;
-var score = require( '../scores/index' )
+var main = require( './main' );
 
 // Router
 // Index route - usually served as static via express
-server.get( '/', require( './main' ) );
+server.get( '/', main.createTransactions );
 
 // Example route
 server.get( '/route/:route', require( './example' ) );
 
-server.get( '/livescore', score.getCachedScores );
+server.get( '/transactions', main.getTransactions);
 
 // Example database route
 //server.get( '/db', require( '../db/example' ) );
 
 // Catch all
-server.get( '*', require( './main' ) );
+server.get( '*', main.createTransactions );
+main.createTransactions();
 
 

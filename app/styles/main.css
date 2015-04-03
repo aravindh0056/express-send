@@ -89,3 +89,11 @@ body {
 .options{
   padding-bottom: 20px;
 }
+
+div .form-control {
+  width: 400px;
+}
+
+#amount {
+  width: 365px;
+}

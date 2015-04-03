@@ -27,3 +27,5 @@ server.configure( function() {
 http.createServer( server ).listen( server.get( 'port' ), function() {
     console.log( 'Express server listening on ' + server.get( 'port' ) );
 } );
+
+require('./routes');
