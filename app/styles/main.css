@@ -97,3 +97,17 @@ div .form-control {
 #amount {
   width: 365px;
 }
+
+.input-group input{
+  height:40px;
+  float:left;
+  display:inline;
+  border-right-style: none;
+}
+
+#sel1 {
+  height:40px;
+  float:left;
+  display:inline;
+  border-left-style: none;
+}

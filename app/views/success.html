@@ -1,6 +1,10 @@
 <div class="jumbotron">
   <h1>Express Send</h1>
   <p>
-    Transaction successful.
+    Transaction successful. You have sent {{currency}}{{amount}} to {{name}}
   </p>
+  <div style="padding-top:50px;">
+	<button type="submit" ng-click="router('send')" class="btn btn-primary">Send Money</button>
+	<button type="submit" ng-click="router('transactions')" class="btn btn-primary">Transcation History</button>
+  </div>
 </div>

@@ -1,14 +1,15 @@
 <div class="jumbotron">
+	<h3 style="padding-bottom:30px;">Send Money</h3>
   <!--<h1>Send Money</h1> -->
- 
+ <img src="images/loading_spinner.gif" ng-show="loading" />
  <div ng-include src="'./views/error.html'"></div>
 
+ <div ng-show="!loading">
   <form style="margin-left:auto;margin-right:auto;" class="form-horizontal">
 	  <div class="form-group">
 	    <div style="margin-left:105px;" class="input-group">
-	      <button style="width:30px;height:40px;float:left;display:inline;">$</button>
-	      <input style="width:320px;height:40px;float:left;display:inline;border-right-style: none;" type="text" ng-model="amount" class="form-control" id="amount" placeholder="Amount">
-	      <select style="width:50px;height:40px;float:left;display:inline;border-left-style: none;" class="form-control" id="sel1">
+	      <input style="width:350px" type="text" ng-model="amount" class="form-control" id="amount" placeholder="Amount">
+	      <select ng-model="currency" id="sel1" style="width:50px;" class="form-control">
 	        <option>$</option>
 	        <option>&#8364;</option>
 	        <option>&#8355;</option>
@@ -25,14 +26,17 @@
 	  	<textarea style="margin:auto;" ng-model="message" class="form-control" rows="3"></textarea>
 	  </div>
 	  <div class="form-group">
-	  <select style="margin:auto;" class="form-control" id="sel1">
-	        <option>Test1</option>
-	        <option>Test2</option>
-	        </select>
+	  <select style="margin:auto;" class="form-control">
+	        <option>I am sending money to family or friends</option>
+	        <option>I am paying for goods</option>
+	  </select>
 	  </div>
-	  <button type="submit" ng-click="clear()" class="btn btn-primary">Clear</button>
-	  <button type="submit" ng-click="validateAndSend()" class="btn btn-primary">Transfer cash</button>
+	  <div style="padding-top:50px;">
+		  <button type="submit" ng-click="clear()" class="btn btn-primary">Clear</button>
+		  <button type="submit" ng-click="validateAndSend()" class="btn btn-primary">Transfer cash</button>
+	</div>
 </form>
+</div>
 </div>
 
 

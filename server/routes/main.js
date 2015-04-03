@@ -38,13 +38,17 @@ exports.getTransactions = function(req, res) {
 
 exports.postTransaction = function(req, res) {
 	var email = req.body.email;
-	console.log(email);
-	console.log(map[email]);
-	if(map[email]) {
-		console.log("success");
-		res.send(200, "success");
+	var amount = req.body.amount;
+	var user = map[email];
+	
+	if(user) {
+		console.log(amount);
+		res.send(200, {
+			name : user.name,
+			amount : amount,
+			message : "success"
+			});
 	} else {
-		console.log("ere");
 		res.send(404, {
 			code : 1234,
 			message : "User not found"

@@ -48,30 +48,34 @@
 
  transactionCtrl.controller( 'TransactionsCtrl', function( $scope, $location, $http, Transaction ) {
         var transactions = [];
+        $scope.loading = true;
         sendRequest();
 
         $("#tblbody").scroll( function() {
           if($(this)[0].scrollHeight - $(this).scrollTop() == $(this).outerHeight()) {
+            $scope.loading = true;
             sendRequest();
           }
         });
 
         function sendRequest() {
-            var url = 'http://localhost:4000/transactions';
-            url += '?fetchCount=30&fetchIndex=' + (transactions.length + 1);
-            $http.get(url)
-            .success(function(data) {
-                for(var i=0;i<data.length;i++) {
-                    var transaction = new Transaction();
-                    transaction.date = data[i].date;
-                    transaction.name = data[i].name;
-                    transaction.amount = data[i].amount;
-                    transactions.push(transaction);
-                }
+            setTimeout(function() {
+                var url = 'http://localhost:4000/transactions';
+                url += '?fetchCount=30&fetchIndex=' + (transactions.length + 1);
+                $http.get(url)
+                .success(function(data) {
+                    for(var i=0;i<data.length;i++) {
+                        var transaction = new Transaction();
+                        transaction.date = data[i].date;
+                        transaction.name = data[i].name;
+                        transaction.amount = data[i].amount;
+                        transactions.push(transaction);
+                    }
 
-                $scope.transactions = transactions;
-        });
-
+                    $scope.transactions = transactions;
+                    $scope.loading = false;
+                });
+            }, 3000);
         }
     }
     );

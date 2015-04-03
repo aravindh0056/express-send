@@ -34,7 +34,7 @@ angular.module( 'expressSendApp', [
         .when( '/success', {
             // @todo fix this
             templateUrl: 'views/success.html',
-            controller: 'SendFundsCtrl'
+            controller: 'SuccessCtrl'
         })
         .when( '/transactions', {
             // @todo fix this

@@ -28,6 +28,8 @@ angular.module('expressSendApp')
   					  }];    
 
     $scope.show = false;
+    $scope.loading = false;
+    $scope.currency = '$';
 
     $scope.validateAndSend = function() {
     	var invalid = false;
@@ -63,12 +65,23 @@ angular.module('expressSendApp')
     	}
 
     	if(!invalid) {
-        var url = 'http://localhost:4000/transactions';
-        $http.post(url, {email : $scope.email})
+        $scope.loading = true;
+        setTimeout(function() {
+            var url = 'http://localhost:4000/transactions';
+            $http.post(url, {email : $scope.email,
+                         currency: $scope.currency,
+                         amount : $scope.amount,
+                         message : $scope.message,
+                         reason : $scope.reason
+                        })
             .success(function(data) {
-                $location.path( '/success' );
+                $scope.loading = false;
+                $location.path( '/success' ).search({name: data.name, 
+                                                    currency: $scope.currency,
+                                                    amount: data.amount});;
             })
             .error(function(data) {
+              $scope.loading = false;
               invalidInputs = [];
               if(data.code == 1234) invalidInputs.push(data.message);
               else invalidInputs.push("Transaction failed");
@@ -77,6 +90,7 @@ angular.module('expressSendApp')
               error.modal('show');
               console.log(data.message);
             });
+        }, 3000);
     	}
     	else {
         var error = angular.element('#transactionErrorModal');
@@ -97,4 +111,13 @@ angular.module('expressSendApp')
     		$scope[inputCtrl.name] = "";
     	}
     }
-  });
+  })
+  .controller('SuccessCtrl', function ($scope, $location, $routeParams){
+    $scope.name=$routeParams.name;
+    $scope.amount=$routeParams.amount;
+    $scope.currency = $routeParams.currency;
+
+    $scope.router = function(route) {
+      $location.path( '/' + route);
+    }
+});
