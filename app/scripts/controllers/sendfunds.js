@@ -51,7 +51,10 @@ angular.module('expressSendApp')
     				if(isNaN(value) || typeof value !== 'number') {
     					invalid = true; 
     					invalidInputs.push(inputCtrl.text + " should be a number");
-    				}
+    				} else if(value < 0) {
+              invalid = true
+              invalidInputs.push(inputCtrl.text + " cannot be negative");
+            }
     				break;
     			case 'email':
     				var regex = /\S+@\S+\.\S+/;
