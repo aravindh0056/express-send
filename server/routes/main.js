@@ -14,8 +14,8 @@ exports.createTransactions = function() {
 	for(var i=0; i < 300; i++) {
 		var transaction = new Transaction();
 		transaction.date = today;
-		transaction.name = "A" + i;
-		transaction.amount = 100 + i;
+		transaction.name = "user" + i;
+		transaction.amount = 1000 + i;
 		transactions.push(transaction);
 	}
 }
@@ -24,8 +24,8 @@ exports.createUsers = function() {
 	for(var i=0; i<10;i++) {
 		var user = new User();
 		user.age = 20 + i;
-		user.name = "A" + i;
-		user.email = "A" + i + "@gmail.com"
+		user.name = "user" + i;
+		user.email = "user" + i + "@gmail.com"
 		map[user.email] = user;
 	}
 }
