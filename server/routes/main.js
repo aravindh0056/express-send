@@ -15,7 +15,7 @@ exports.createTransactions = function() {
 		var transaction = new Transaction();
 		transaction.date = today;
 		transaction.name = "A" + i;
-		transaction.amount = i;
+		transaction.amount = 100 + i;
 		transactions.push(transaction);
 	}
 }
