@@ -13,7 +13,6 @@
  transactionCtrl.factory(
             "Transaction",
             function( ) {
-                // Define the constructor function.
                 function Transaction( ) {
                 	console.log("test");
                 }
@@ -42,28 +41,37 @@
                     }
                 };
 
-                // Return constructor - this is what defines the actual
-                // injectable in the DI framework.
                 return Transaction;
             }
         );
 
 
  transactionCtrl.controller( 'TransactionsCtrl', function( $scope, $location, $http, Transaction ) {
+        var transactions = [];
+        sendRequest();
 
-        $http.get('http://localhost:4000/transactions').
-        success(function(data) {
-        	var transactions = [];
-        	
-        	for(var i=0;i<data.length;i++) {
-        		var transaction = new Transaction();
-        		transaction.date = data[i].date;
-        		transaction.name = data[i].name;
-        		transaction.amount = data[i].amount;
-        		transactions.push(transaction);
-        	}
-
-        	$scope.transactions = transactions;
+        $("#tblbody").scroll( function() {
+          if($(this)[0].scrollHeight - $(this).scrollTop() == $(this).outerHeight()) {
+            sendRequest();
+          }
         });
+
+        function sendRequest() {
+            var url = 'http://localhost:4000/transactions';
+            url += '?fetchCount=30&fetchIndex=' + (transactions.length + 1);
+            $http.get(url)
+            .success(function(data) {
+                for(var i=0;i<data.length;i++) {
+                    var transaction = new Transaction();
+                    transaction.date = data[i].date;
+                    transaction.name = data[i].name;
+                    transaction.amount = data[i].amount;
+                    transactions.push(transaction);
+                }
+
+                $scope.transactions = transactions;
+        });
+
+        }
     }
     );

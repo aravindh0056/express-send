@@ -18,8 +18,8 @@ angular.module( 'expressSendApp', [
         $routeProvider
         .when( '/', {
             // @todo fix this
-            templateUrl: 'views/sendfunds.html',
-            controller: 'SendFundsCtrl'
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl'
         })
         .when( '/about', {
             // @todo fix this

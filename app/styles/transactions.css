@@ -1,0 +1,27 @@
+<style>
+.divTable{
+  display:table;         
+  width:auto;         
+  background-color:#eee;         
+  border:1px solid  #666666;         
+  border-spacing:5px;/*cellspacing:poor IE support for  this*/
+}
+.headRow{
+  display:table-row;
+  width:auto;
+  clear:both;
+
+}
+.divCell{
+  float:left;/*fix for  buggy browsers*/
+  display:table-column;         
+  width:200px;  
+  padding-bottom: 20px;
+  text-align: center;       
+}
+
+.tblbody{
+  height:400px;
+  overflow:auto;
+}
+</style>

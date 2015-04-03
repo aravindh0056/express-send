@@ -19,5 +19,10 @@ exports.createTransactions = function( req, res ) {
 };
 
 exports.getTransactions = function(req, res) {
-	res.send(transactions);
+	var fetchCount = Number(req.query.fetchCount);
+	var fetchIndex = Number(req.query.fetchIndex);
+	console.log(fetchCount)
+	console.log(fetchIndex + fetchCount);
+	console.log(transactions.slice(fetchIndex, fetchIndex + fetchCount))
+	res.send(transactions.slice(fetchIndex, fetchIndex + fetchCount));
 }
