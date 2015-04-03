@@ -46,7 +46,7 @@
         );
 
 
- transactionCtrl.controller( 'TransactionsCtrl', function( $scope, $location, $http, Transaction ) {
+ transactionCtrl.controller( 'TransactionsCtrl', function( $scope, $location, $window, $http, Transaction ) {
         var transactions = [];
         $scope.loading = true;
         sendRequest();
@@ -76,6 +76,10 @@
                     $scope.loading = false;
                 });
             }, 3000);
+        }
+
+        $scope.router = function(route) {
+            $window.history.back();
         }
     }
     );
