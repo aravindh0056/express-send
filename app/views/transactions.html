@@ -1,6 +1,7 @@
 <div class="jumbotron" style="width:780px;">
-  <h3 style="padding-bottom:30px;">Transaction History</h3>
-<img src="images/loading_spinner.gif" ng-show="loading" />
+<div ng-include src="'./views/transactiondetails.html'"></div>
+<h3 style="padding-bottom:30px;">Transaction History</h3>
+<img id="test" src="images/loading_spinner.gif" ng-show="loading" />
 <div id="divTable" class="divTable" ng-show="!loading">
     <div class="divrow">
         <div class="divheader divcell">Date</div>
@@ -8,7 +9,7 @@
         <div class="divheader divcell">Amount</div>
     </div>
     <div id="tblbody" class="tblbody">
-      <div class="divrow" ng-repeat="transaction in transactions">
+      <div class="divrow" ng-click="revealData(transaction)" ng-repeat="transaction in transactions">
           <div class="divcell">{{transaction.date}}</div>
           <div class="divcell">{{transaction.name}}</div>
           <div class="divcell">{{transaction.amount}}</div>

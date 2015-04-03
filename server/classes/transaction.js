@@ -1,6 +1,7 @@
 function Transaction() {}
 
 Transaction.prototype = {
+	id: 0,
     date: "",
     firstName: "",
     LastName: "",

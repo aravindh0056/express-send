@@ -13,6 +13,7 @@ exports.createTransactions = function() {
 
 	for(var i=0; i < 300; i++) {
 		var transaction = new Transaction();
+		transaction.id = i;
 		transaction.date = today;
 		transaction.name = "user" + i;
 		transaction.amount = 1000 + i;

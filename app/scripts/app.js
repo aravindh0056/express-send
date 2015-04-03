@@ -47,9 +47,3 @@ angular.module( 'expressSendApp', [
 
         $locationProvider.html5Mode( true );
     }]);
-
-//create namespace
-
-window.com = {
-  expresssend : {}
-};

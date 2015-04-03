@@ -13,9 +13,7 @@
  transactionCtrl.factory(
             "Transaction",
             function( ) {
-                function Transaction( ) {
-                	console.log("test");
-                }
+                function Transaction( ) {}
 
                 Transaction.prototype = {
                 	date: "",
@@ -49,23 +47,23 @@
  transactionCtrl.controller( 'TransactionsCtrl', function( $scope, $location, $window, $http, Transaction ) {
         var transactions = [];
         $scope.loading = true;
-        sendRequest();
+        setTimeout(sendRequest, 3000);
 
         $("#tblbody").scroll( function() {
           if($(this)[0].scrollHeight - $(this).scrollTop() == $(this).outerHeight()) {
             $scope.loading = true;
-            sendRequest();
+            setTimeout(sendRequest, 3000);
           }
         });
 
         function sendRequest() {
-            setTimeout(function() {
                 var url = 'http://localhost:4000/transactions';
                 url += '?fetchCount=30&fetchIndex=' + (transactions.length + 1);
                 $http.get(url)
                 .success(function(data) {
                     for(var i=0;i<data.length;i++) {
                         var transaction = new Transaction();
+                        transaction.id = data[i].id;
                         transaction.date = data[i].date;
                         transaction.name = data[i].name;
                         transaction.amount = data[i].amount;
@@ -75,7 +73,12 @@
                     $scope.transactions = transactions;
                     $scope.loading = false;
                 });
-            }, 3000);
+        }
+
+        $scope.revealData = function(transaction) {
+            $scope.transactionDetails = transaction;
+            var details = angular.element('#transactionDetailsModal');
+            details.modal('show');
         }
 
         $scope.router = function(route) {
